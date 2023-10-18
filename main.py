@@ -83,11 +83,21 @@ while not is_end:
             coffee_cost = MENU[drink]["cost"]
 
             if total_money < coffee_cost:
-                print("Not enough money")
+                print("Not enough money. Money refunded")
                 is_end = True
             else:
+                # считаем бабки
+                resources["money"] += coffee_cost
+                change = total_money - coffee_cost
+
                 # готовим кофий
-                print("")
+                for key in ingredients:
+                    resources[key] -= ingredients[key]
+
+
+                # готовим кофий
+                print(f"Here is ${format(change, '.2f')} in change")
+                print(f"Here is your ${drink}. Enjoy!")
 
 
 
